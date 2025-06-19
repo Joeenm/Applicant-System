@@ -305,8 +305,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 </div>
                                 <div>
                                     <label for="distrito" class="block text-sm font-medium text-gray-700 mb-1">Distrito*</label>
-                                    <input type="text" id="distrito" name="distrito" required
+                                    <select id="distrito" name="distrito" required disabled
                                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <option value="">Seleccione provincia primero</option>
+                                    </select>
                                 </div>
                             </div>
                             
@@ -464,6 +466,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script src="../../js/script.js"></script>
+    <script src="../../js/scriptDistritos.js"></script>
     <script src="../../js/scriptValidations.js"></script>
 </body>
 </html>

@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     
                     <div class="text-sm">
                         <a href="/Applicant-System/index.php" class="font-medium text-blue-600 hover:text-blue-500">
-                            Regresar
+                            Regresar al inicio
                         </a>
                     </div>
                 </div>

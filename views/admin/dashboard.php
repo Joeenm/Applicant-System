@@ -73,7 +73,7 @@ if (!empty($buscar)) {
                         </a>
                     </li>
                     <li>
-                        <a href="logout.php" class="block py-2 px-4 hover:bg-blue-700 rounded">
+                        <a href="../../php/logout.php" class="block py-2 px-4 hover:bg-blue-700 rounded">
                             <i class="fas fa-sign-out-alt mr-2"></i>Cerrar Sesión
                         </a>
                     </li>

@@ -1,0 +1,93 @@
+{
+  "Bocas del Toro": [
+    "Bocas del Toro",
+    "Changuinola",
+    "Chiriquí Grande"
+  ],
+  "Coclé": [
+    "Aguadulce",
+    "Antón",
+    "La Pintada",
+    "Natá",
+    "Olá",
+    "Penonomé"
+  ],
+  "Colón": [
+    "Colón",
+    "Chagres",
+    "Donoso",
+    "Portobelo",
+    "Santa Isabel"
+  ],
+  "Chiriquí": [
+    "Alanje",
+    "Barú",
+    "Boquerón",
+    "Boquete",
+    "Bugaba",
+    "David",
+    "Dolega",
+    "Gualaca",
+    "Remedios",
+    "Renacimiento",
+    "San Félix",
+    "San Lorenzo",
+    "Tierras Altas",
+    "Tolé"
+  ],
+  "Darién": [
+    "Chepigana",
+    "Pinogana",
+    "Santa Fe",
+    "Cémaco",
+    "Emberá",
+    "Wargandí"
+  ],
+  "Herrera": [
+    "Chitré",
+    "Las Minas",
+    "Los Pozos",
+    "Ocú",
+    "Parita",
+    "Pesé",
+    "Santa María"
+  ],
+  "Los Santos": [
+    "Guararé",
+    "Las Tablas",
+    "Los Santos",
+    "Macaracas",
+    "Pedasí",
+    "Pocrí",
+    "Tonosí"
+  ],
+  "Panamá": [
+    "Balboa",
+    "Chepo",
+    "Chimán",
+    "Panamá",
+    "San Miguelito",
+    "Taboga"
+  ],
+  "Veraguas": [
+    "Atalaya",
+    "Calobre",
+    "Cañazas",
+    "La Mesa",
+    "Las Palmas",
+    "Mariato",
+    "Montijo",
+    "Río de Jesús",
+    "San Francisco",
+    "Santa Fe",
+    "Santiago",
+    "Soná"
+  ],
+  "Panamá Oeste": [
+    "Arraiján",
+    "Capira",
+    "Chame",
+    "La Chorrera",
+    "San Carlos"
+  ]
+}
