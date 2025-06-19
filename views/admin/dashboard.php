@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Verificar autenticación y permisos de admin
 if (!isset($_SESSION['admin_id']) || empty($_SESSION['admin_id'])) {
     header('Location: access-denied.php');
     exit;
@@ -9,31 +8,66 @@ if (!isset($_SESSION['admin_id']) || empty($_SESSION['admin_id'])) {
 require_once("../../php/conexion.php");
 $db = getDatabaseConnection('usuarios_db');
 
-$buscar = $_GET['buscar'] ?? '';
+// Parámetros de paginación
+$pagina = isset($_GET['pagina']) ? (int)$_GET['pagina'] : 1;
+$porPagina = 10; // Número de registros por página
+$pagina = max(1, $pagina); // Asegurar que la página no sea menor que 1
+
+// Calcular el offset
+$offset = ($pagina - 1) * $porPagina;
+
+$buscar = isset($_GET['buscar']) ? trim($_GET['buscar']) : '';
+
+// Consulta base con o sin búsqueda
+$sql = "SELECT * FROM candidatos";
+$sqlTotal = "SELECT COUNT(*) AS total FROM candidatos";
+
+$params = [];
+$where = [];
 
 if (!empty($buscar)) {
     $buscarParam = "%$buscar%";
-    $sql = "SELECT * FROM candidatos WHERE
-        nombres LIKE :b1 OR
-        apellidos LIKE :b2 OR
-        tipo_documento LIKE :b3 OR
-        numero_documento LIKE :b4 OR
-        email LIKE :b5
-        ORDER BY fecha_registro DESC";
-    
-    $stmt = $db->prepare($sql);
-
-    $stmt->bindParam(':b1', $buscarParam, PDO::PARAM_STR);
-    $stmt->bindParam(':b2', $buscarParam, PDO::PARAM_STR);
-    $stmt->bindParam(':b3', $buscarParam, PDO::PARAM_STR);
-    $stmt->bindParam(':b4', $buscarParam, PDO::PARAM_STR);
-    $stmt->bindParam(':b5', $buscarParam, PDO::PARAM_STR);
-
-    $stmt->execute();
-    $postulantes = $stmt->fetchAll(PDO::FETCH_ASSOC);
-} else {
-    $postulantes = $db->query("SELECT * FROM candidatos ORDER BY fecha_registro ASC")->fetchAll(PDO::FETCH_ASSOC);
+    $where[] = "(nombres LIKE :b1 OR apellidos LIKE :b2 OR tipo_documento LIKE :b3 OR numero_documento LIKE :b4 OR email LIKE :b5)";
+    $params[':b1'] = $buscarParam;
+    $params[':b2'] = $buscarParam;
+    $params[':b3'] = $buscarParam;
+    $params[':b4'] = $buscarParam;
+    $params[':b5'] = $buscarParam;
 }
+
+// Construir consulta final
+if (!empty($where)) {
+    $sql .= " WHERE " . implode(" AND ", $where);
+    $sqlTotal .= " WHERE " . implode(" AND ", $where);
+}
+
+$sql .= " ORDER BY fecha_registro DESC LIMIT :limit OFFSET :offset";
+$params[':limit'] = $porPagina;
+$params[':offset'] = $offset;
+
+// Ejecutar consulta principal
+$stmt = $db->prepare($sql);
+foreach ($params as $key => $value) {
+    $paramType = is_int($value) ? PDO::PARAM_INT : PDO::PARAM_STR;
+    $stmt->bindValue($key, $value, $paramType);
+}
+$stmt->execute();
+$postulantes = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+// Obtener total de resultados
+$stmtTotal = $db->prepare($sqlTotal);
+if (!empty($buscar)) {
+    $stmtTotal->bindValue(':b1', $buscarParam, PDO::PARAM_STR);
+    $stmtTotal->bindValue(':b2', $buscarParam, PDO::PARAM_STR);
+    $stmtTotal->bindValue(':b3', $buscarParam, PDO::PARAM_STR);
+    $stmtTotal->bindValue(':b4', $buscarParam, PDO::PARAM_STR);
+    $stmtTotal->bindValue(':b5', $buscarParam, PDO::PARAM_STR);
+}
+$stmtTotal->execute();
+$totalResultados = $stmtTotal->fetch(PDO::FETCH_ASSOC)['total'];
+
+// Calcular el total de páginas
+$totalPaginas = ceil($totalResultados / $porPagina);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -154,15 +188,36 @@ if (!empty($buscar)) {
                 <!-- Paginación -->
                 <div class="flex justify-between items-center mt-4">
                     <div class="text-sm text-gray-500">
-                        Mostrando <span class="font-medium">1</span> a <span class="font-medium">10</span> de <span class="font-medium"><?= count($postulantes) ?></span> resultados
+                        Mostrando <span class="font-medium"><?= ($offset + 1) ?></span> a 
+                        <span class="font-medium"><?= min($offset + $porPagina, $totalResultados) ?></span> de 
+                        <span class="font-medium"><?= $totalResultados ?></span> resultados
                     </div>
                     <div class="flex space-x-2">
-                        <button class="px-3 py-1 border rounded-md bg-white text-gray-700 hover:bg-gray-50">
+                        <!-- Botón "Anterior" -->
+                        <button 
+                            onclick="window.location.href = '?pagina=<?= max(1, $pagina - 1) ?><?= !empty($buscar) ? '&buscar=' . urlencode($buscar) : '' ?>'"
+                            class="px-3 py-1 border rounded-md bg-white text-gray-700 hover:bg-gray-50 <?= $pagina == 1 ? 'opacity-50 cursor-not-allowed' : '' ?>"
+                            <?= $pagina == 1 ? 'disabled' : '' ?>
+                        >
                             <i class="fas fa-chevron-left"></i>
                         </button>
-                        <button class="px-3 py-1 border rounded-md bg-blue-600 text-white">1</button>
-                        <button class="px-3 py-1 border rounded-md bg-white text-gray-700 hover:bg-gray-50">2</button>
-                        <button class="px-3 py-1 border rounded-md bg-white text-gray-700 hover:bg-gray-50">
+
+                        <!-- Números de página -->
+                        <?php for ($i = 1; $i <= $totalPaginas; $i++): ?>
+                            <button 
+                                onclick="window.location.href = '?pagina=<?= $i ?><?= !empty($buscar) ? '&buscar=' . urlencode($buscar) : '' ?>'"
+                                class="px-3 py-1 border rounded-md <?= $i == $pagina ? 'bg-blue-600 text-white' : 'bg-white text-gray-700 hover:bg-gray-50' ?>"
+                            >
+                                <?= $i ?>
+                            </button>
+                        <?php endfor; ?>
+
+                        <!-- Botón "Siguiente" -->
+                        <button 
+                            onclick="window.location.href = '?pagina=<?= min($totalPaginas, $pagina + 1) ?><?= !empty($buscar) ? '&buscar=' . urlencode($buscar) : '' ?>'"
+                            class="px-3 py-1 border rounded-md bg-white text-gray-700 hover:bg-gray-50 <?= $pagina == $totalPaginas ? 'opacity-50 cursor-not-allowed' : '' ?>"
+                            <?= $pagina == $totalPaginas ? 'disabled' : '' ?>
+                        >
                             <i class="fas fa-chevron-right"></i>
                         </button>
                     </div>

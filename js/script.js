@@ -11,13 +11,13 @@ function addDocumentField(category) {
     newField.innerHTML = `
         <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
             <div>
-                <label class="block text-xs text-gray-500 mb-1">Nombre del documento${category === 'licenciaturas' ? '*' : ''}</label>
-                <input type="text" name="${category}[nombre][]" ${category === 'licenciaturas' ? 'required' : ''}
+                <label class="block text-xs text-gray-500 mb-1">Nombre del documento*</label>
+                <input type="text" name="${category}[nombre][]" required
                     class="w-full px-3 py-2 border border-gray-300 rounded-md text-sm focus:outline-none focus:ring-1 focus:ring-blue-500"
                     placeholder="Ej: ${getPlaceholder(category)}">
             </div>
             <div class="flex items-end">
-                <input type="file" name="${category}[archivo][]" accept=".pdf,.doc,.docx" ${category === 'licenciaturas' ? 'required' : ''}
+                <input type="file" name="${category}[archivo][]" accept=".pdf,.doc,.docx" required
                     class="block w-full text-sm text-gray-500 file:mr-2 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-xs file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
             </div>
         </div>
@@ -28,6 +28,23 @@ function addDocumentField(category) {
         </button>
     `;
     container.appendChild(newField);
+
+    // Validar tamaño del archivo al seleccionarlo
+    const fileInput = newField.querySelector('input[type="file"]');
+    fileInput.addEventListener('change', function(e) {
+        const maxSize = 5 * 1024 * 1024; // 5MB en bytes
+        const file = e.target.files[0];
+        
+        if (file && file.size > maxSize) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Archivo demasiado grande',
+                text: `El archivo "${file.name}" excede el límite de 5MB. Por favor, elige un archivo más pequeño.`,
+                confirmButtonColor: '#3085d6',
+            });
+            e.target.value = ''; // Limpiar el input
+        }
+    });
 }
 
 // Función para obtener texto de placeholder según la categoría
@@ -115,3 +132,72 @@ mesSelect.addEventListener('change', ajustarDias);
 anoSelect.addEventListener('change', ajustarDias)
 
 ajustarDias();
+
+document.querySelector('form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const form = this;
+    const formData = new FormData(form);
+
+    // Validar si hay archivos cargados
+    const archivos = form.querySelectorAll('input[type="file"]');
+    let archivosVacios = true;
+
+    archivos.forEach(input => {
+        if (input.files.length > 0) {
+            archivosVacios = false;
+        }
+    });
+
+    // Si no hay archivos, preguntar con SweetAlert
+    if (archivosVacios) {
+        const confirmacion = await Swal.fire({
+            title: '¿No subiste archivos?',
+            text: 'No se detectaron archivos válidos. ¿Deseas continuar de todas formas?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Sí, continuar',
+            cancelButtonText: 'No, cancelar'
+        });
+
+        if (!confirmacion.isConfirmed) {
+            Swal.fire('Cancelado', 'Podrás subir los archivos antes de enviar el formulario nuevamente.', 'info');
+            return;
+        }
+    }
+
+    // Mostrar mensaje de carga mientras se verifica duplicados
+    Swal.fire({
+        title: 'Validando datos...',
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading()
+    });
+
+    try {
+        const response = await fetch('/Applicant-System/php/duplication.php', {
+            method: 'POST',
+            body: formData
+        });
+
+        const result = await response.json();
+
+        if (result.valido) {
+            // Si no hay duplicados, enviar el formulario
+            form.submit();
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Datos duplicados',
+                html: result.errores.join('<br>'),
+                confirmButtonColor: '#3085d6'
+            });
+        }
+    } catch (error) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'No se pudo conectar al servidor. Intenta nuevamente.',
+            confirmButtonColor: '#3085d6'
+        });
+    }
+});

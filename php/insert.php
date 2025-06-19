@@ -126,15 +126,6 @@ function procesarArchivosAcademicos($files, $post, $usuario_id) {
         }
     }
     
-    if (empty($archivos_procesados)) {
-        $errorInfo = "Datos recibidos para depuración:\n";
-        $errorInfo .= print_r($files, true) . "\n";
-        $errorInfo .= print_r($post, true);
-        error_log($errorInfo);
-        
-        throw new Exception("No se procesaron archivos válidos. Verifica que los archivos cumplan con los requisitos.");
-    }
-    
     return $archivos_procesados;
 }
 

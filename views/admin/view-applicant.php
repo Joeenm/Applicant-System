@@ -72,14 +72,14 @@ $documentos = $db_academico->query("SELECT * FROM documentos_academicos WHERE ca
             <div class="bg-white rounded-lg shadow-md p-6 mb-6">
                 <div class="flex justify-between items-center mb-6">
                     <h2 class="text-2xl font-bold text-gray-800">Información Personal</h2>
-                    <div class="flex space-x-2">
+<!--                <div class="flex space-x-2">
                         <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">
                             <i class="fas fa-print mr-2"></i>Imprimir
                         </button>
                         <button class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700">
                             <i class="fas fa-download mr-2"></i>Descargar PDF
                         </button>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
