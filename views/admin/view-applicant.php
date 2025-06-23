@@ -37,22 +37,22 @@ $documentos = $db_academico->query("SELECT * FROM documentos_academicos WHERE ca
             <nav class="p-4">
                 <ul>
                     <li class="mb-2">
-                        <a href="#" class="block py-2 px-4 bg-blue-700 rounded">
+                        <a href="../../views/admin/dashboard.php" class="block py-2 px-4 bg-blue-700 rounded">
                             <i class="fas fa-users mr-2"></i>Postulantes
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="#" class="block py-2 px-4 hover:bg-blue-700 rounded">
+                        <a href="../../views/admin/documents.php" class="block py-2 px-4 hover:bg-blue-700 rounded">
                             <i class="fas fa-file-alt mr-2"></i>Documentos
                         </a>
                     </li>
-                    <li class="mb-2">
+                    <!-- <li class="mb-2">
                         <a href="#" class="block py-2 px-4 hover:bg-blue-700 rounded">
                             <i class="fas fa-cog mr-2"></i>Configuración
                         </a>
-                    </li>
+                    </li> -->
                     <li>
-                        <a href="logout.php" class="block py-2 px-4 hover:bg-blue-700 rounded">
+                        <a href="../../php/logout.php" class="block py-2 px-4 hover:bg-blue-700 rounded">
                             <i class="fas fa-sign-out-alt mr-2"></i>Cerrar Sesión
                         </a>
                     </li>
