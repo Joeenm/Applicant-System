@@ -17,7 +17,7 @@ function addDocumentField(category) {
                     placeholder="Ej: ${getPlaceholder(category)}">
             </div>
             <div class="flex items-end">
-                <input type="file" name="${category}[archivo][]" accept=".pdf,.doc,.docx" required
+                <input type="file" name="${category}[archivo][]" accept=".pdf" required
                     class="block w-full text-sm text-gray-500 file:mr-2 file:py-1.5 file:px-3 file:rounded file:border-0 file:text-xs file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
             </div>
         </div>
@@ -69,25 +69,6 @@ function removeDocumentField(button) {
     
     field.remove();
 }
-
-const nacionalidades = [
-    "Afganistán", "Albania", "Alemania", "Argentina", "Australia",
-    "Brasil", "Canadá", "Chile", "China", "Colombia", "Costa Rica",
-    "Cuba", "Ecuador", "Egipto", "El Salvador", "España",
-    "Estados Unidos", "Francia", "Guatemala", "Honduras", "India",
-    "Italia", "Japón", "México", "Nicaragua", "Panamá", "Paraguay",
-    "Perú", "Portugal", "Reino Unido", "República Dominicana",
-    "Uruguay", "Venezuela", "Zimbabue"
-];
-
-const select = document.getElementById("nacionalidad");
-        
-nacionalidades.forEach(pais => {
-    const option = document.createElement("option");
-    option.value = pais;
-    option.textContent = pais;
-    select.appendChild(option);
-});
 
 const diaSelect = document.getElementById('dia_nacimiento');
 const mesSelect = document.getElementById('mes_nacimiento');

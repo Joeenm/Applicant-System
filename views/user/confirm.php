@@ -40,7 +40,7 @@
                             </li>
                             <li class="flex items-start">
                                 <i class="fas fa-check-circle mt-1 mr-2 text-blue-500 flex-shrink-0"></i>
-                                <span>Puedes actualizar tu información en cualquier momento</span>
+                                <span>Mantente al tanto de nuevas postulaciones disponibles</span>
                             </li>
                         </ul>
                     </div>

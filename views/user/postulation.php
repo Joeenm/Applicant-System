@@ -467,7 +467,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
 
     <script src="../../js/script.js"></script>
-    <script src="../../js/scriptDistritos.js"></script>
+    <script src="../../js/scriptNacDist.js"></script>
     <script src="../../js/scriptValidations.js"></script>
 </body>
 </html>

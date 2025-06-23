@@ -231,9 +231,9 @@ document.addEventListener('DOMContentLoaded', function() {
         tipoDocumento.addEventListener('change', function() {
             numeroDocumento.value = '';
             if (this.value === 'cedula') {
-                numeroDocumento.placeholder = 'Ej: 13-2-1569 (1-13, 1-5 dígitos, 1-4 dígitos)';
+                numeroDocumento.placeholder = 'Ej: 00-0000-0000 (1-13, 1-5 dígitos, 1-4 dígitos)';
             } else if (this.value === 'pasaporte') {
-                numeroDocumento.placeholder = 'Ej: AB123456';
+                numeroDocumento.placeholder = 'Ej: AB000000';
             }
         });
         
