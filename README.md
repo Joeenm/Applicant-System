@@ -50,6 +50,22 @@ Este sistema web forma parte del Proyecto de **Desarrollo de Software XI** y tie
 
 ---
 
+## 📦 Backups Incluidos
+
+En la carpeta `backups/` se incluyen archivos `.sql` con respaldos completos de las siguientes bases de datos:
+
+- `admin_db.sql`  
+- `usuarios_db.sql`  
+- `academico_db.sql`
+
+🧾 **Credenciales predeterminadas para el administrador** (en `admin_db`):
+- Usuario: `admin@utp.ac.pa`  
+- Contraseña: `admin2025`
+
+Puedes importar estos archivos directamente desde **phpMyAdmin** para tener el sistema funcional con datos iniciales.
+
+---
+
 ## 🔗 Requisitos Adicionales
 - 💡 **Conexión a internet requerida** para visualizar correctamente los elementos del frontend (ej. íconos de Font Awesome, gráficos con Chart.js, CDN de Tailwind, etc.).
 
