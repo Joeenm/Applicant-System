@@ -26,7 +26,7 @@ function validarTelefono(event) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Campos de nombres y apellidos
+    // Campos de nombres, apellidos y distrito
     document.getElementById('nombre').addEventListener('keypress', soloLetras);
     document.getElementById('apellido').addEventListener('keypress', soloLetras);
     document.getElementById('distrito').addEventListener('keypress', soloLetras);
@@ -225,8 +225,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             return valor;
         }
-
-        // [Resto del código existente...]
         
         tipoDocumento.addEventListener('change', function() {
             numeroDocumento.value = '';

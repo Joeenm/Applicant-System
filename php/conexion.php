@@ -70,7 +70,7 @@ function getDatabaseConnection($dbName) {
     try {
         return Database::getInstance($dbName);
     } catch (Exception $e) {
-        // Mostrar error amigable en producción, log completo en desarrollo
+        // Mostrar error en producción, log completo en desarrollo
         if (ini_get('display_errors')) {
             die("Error de conexión: " . $e->getMessage());
         } else {

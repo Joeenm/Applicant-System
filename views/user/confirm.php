@@ -45,7 +45,7 @@
                         </ul>
                     </div>
                     
-                    <!-- Resumen de envío (opcional) -->
+                    <!-- Resumen de envío -->
                     <div class="mt-4 border-t border-gray-200 pt-4">
                         <h4 class="text-sm font-medium text-gray-500">Número de solicitud</h4>
                         <p class="mt-1 text-lg font-semibold text-gray-900">

@@ -101,7 +101,7 @@ try {
     echo json_encode([
         'success' => false,
         'message' => $e->getMessage(),
-        'trace' => $e->getTraceAsString() // Solo para desarrollo
+        'trace' => $e->getTraceAsString()
     ]);
 } finally {
     ob_end_flush();

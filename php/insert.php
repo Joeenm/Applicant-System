@@ -94,7 +94,7 @@ function procesarArchivosAcademicos($files, $post, $usuario_id) {
             continue;
         }
         
-        // Reestructurar archivos según la nueva estructura
+        // Reestructurar archivos
         $archivos = reestructurarArchivos($files[$categoria_post]);
         $nombres_documentos = $post[$categoria_post]['nombre'] ?? [];
         

@@ -13,7 +13,7 @@ function registrarLog($adminId, $accion) {
     }
 }
 
-// Obtener nombre de administrador por ID (opcional)
+// Obtener nombre de administrador por ID
 function obtenerNombreAdministrador($adminId) {
     try {
         $db = getDatabaseConnection('admin_db');
