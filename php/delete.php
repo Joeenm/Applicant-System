@@ -71,7 +71,7 @@ try {
         }
 
         // Eliminar archivos físicos (fuera de transacción)
-        $directorio = __DIR__."/../../uploads/$id/";
+        $directorio = __DIR__."/../uploads/$id/";
         if (file_exists($directorio)) {
             $files = new RecursiveIteratorIterator(
                 new RecursiveDirectoryIterator($directorio, RecursiveDirectoryIterator::SKIP_DOTS),
