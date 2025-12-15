@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagramas del Sistema - Gestión de Postulantes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .architecture-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-left: 4px solid #4F46E5;
+        }
+        .module-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            border-left: 4px solid #DC2626;
+        }
+        .flow-card {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            border-left: 4px solid #0891B2;
+        }
+        .security-card {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            border-left: 4px solid #059669;
+        }
+        .diagram-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .node {
+            transition: all 0.3s ease;
+        }
+        .node:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-blue-600 to-purple-700 text-white py-8">
+        <div class="container mx-auto px-6">
+            <h1 class="text-4xl font-bold text-center mb-4">
+                <i class="fas fa-project-diagram mr-3"></i>
+                Diagramas del Sistema de Gestión de Postulantes
+            </h1>
+            <p class="text-xl text-center text-blue-100">
+                Arquitectura, Módulos y Flujos del Proyecto Desarrollo de Software XI
+            </p>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-6 py-8">
+        <!-- Navegación -->
+        <nav class="flex flex-wrap justify-center gap-4 mb-8">
+            <a href="#arquitectura" class="bg-white px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <i class="fas fa-sitemap mr-2 text-blue-600"></i>Arquitectura
+            </a>
+            <a href="#modulos" class="bg-white px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <i class="fas fa-cubes mr-2 text-red-600"></i>Módulos
+            </a>
+            <a href="#flujo" class="bg-white px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <i class="fas fa-project-diagram mr-2 text-cyan-600"></i>Flujo General
+            </a>
+            <a href="#seguridad" class="bg-white px-6 py-3 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                <i class="fas fa-shield-alt mr-2 text-green-600"></i>Seguridad
+            </a>
+        </nav>
+
+        <!-- Diagrama de Arquitectura -->
+        <section id="arquitectura" class="mb-12">
+            <div class="architecture-card text-white p-6 rounded-lg mb-6">
+                <h2 class="text-2xl font-bold mb-2">
+                    <i class="fas fa-sitemap mr-2"></i>Arquitectura del Sistema
+                </h2>
+                <p class="text-blue-100">Estructura completa de componentes y tecnologías utilizadas</p>
+            </div>
+
+            <div class="diagram-container p-6">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                    <!-- Cliente -->
+                    <div class="node bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg border-2 border-blue-200">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-desktop text-3xl text-blue-600 mr-3"></i>
+                            <h3 class="text-xl font-bold text-blue-800">Cliente (Frontend)</h3>
+                        </div>
+                        <ul class="space-y-2 text-blue-700">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>HTML/CSS</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Tailwind CSS</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>JavaScript</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Alpine.js</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Chart.js</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>PDF.js</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>SweetAlert2</li>
+                        </ul>
+                    </div>
+
+                    <!-- Servidor -->
+                    <div class="node bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg border-2 border-purple-200">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-server text-3xl text-purple-600 mr-3"></i>
+                            <h3 class="text-xl font-bold text-purple-800">Servidor (Backend)</h3>
+                        </div>
+                        <ul class="space-y-2 text-purple-700">
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>PHP 8.0+</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Apache</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>XAMPP</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Sessions</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>File Upload</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Security</li>
+                            <li><i class="fas fa-check text-green-500 mr-2"></i>Validation</li>
+                        </ul>
+                    </div>
+
+                    <!-- Base de Datos -->
+                    <div class="node bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border-2 border-green-200">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-database text-3xl text-green-600 mr-3"></i>
+                            <h3 class="text-xl font-bold text-green-800">Base de Datos (MySQL)</h3>
+                        </div>
+                        <ul class="space-y-2 text-green-700">
+                            <li><i class="fas fa-database text-blue-500 mr-2"></i>admin_db</li>
+                            <li><i class="fas fa-database text-blue-500 mr-2"></i>usuarios_db</li>
+                            <li><i class="fas fa-database text-blue-500 mr-2"></i>academico_db</li>
+                            <li><i class="fas fa-users text-purple-500 mr-2"></i>Tablas relacionadas</li>
+                            <li><i class="fas fa-backward text-orange-500 mr-2"></i>Backups incluidos</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Conexiones -->
+                <div class="mt-8 text-center">
+                    <div class="flex justify-center items-center space-x-4">
+                        <div class="bg-blue-100 px-4 py-2 rounded-lg">
+                            <i class="fas fa-exchange-alt text-blue-600 mr-2"></i>
+                            HTTP/AJAX
+                        </div>
+                        <i class="fas fa-arrow-right text-gray-400 text-xl"></i>
+                        <div class="bg-purple-100 px-4 py-2 rounded-lg">
+                            <i class="fas fa-exchange-alt text-purple-600 mr-2"></i>
+                            SQL/PDO
+                        </div>
+                        <i class="fas fa-arrow-right text-gray-400 text-xl"></i>
+                        <div class="bg-green-100 px-4 py-2 rounded-lg">
+                            <i class="fas fa-hdd text-green-600 mr-2"></i>
+                            File System
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Diagrama de Módulos -->
+        <section id="modulos" class="mb-12">
+            <div class="module-card text-white p-6 rounded-lg mb-6">
+                <h2 class="text-2xl font-bold mb-2">
+                    <i class="fas fa-cubes mr-2"></i>Diagrama de Módulos
+                </h2>
+                <p class="text-red-100">Estructura modular y componentes del sistema</p>
+            </div>
+
+            <div class="diagram-container p-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Módulo Frontend -->
+                    <div class="node bg-gradient-to-br from-pink-50 to-red-50 p-6 rounded-lg border-2 border-pink-200">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-palette text-3xl text-pink-600 mr-3"></i>
+                            <h3 class="text-xl font-bold text-pink-800">Módulo Frontend</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="bg-white p-3 rounded-lg border border-pink-200">
+                                <h4 class="font-semibold text-pink-700"><i class="fas fa-eye mr-2"></i>Vistas</h4>
+                                <p class="text-sm text-gray-600">dashboard, login, forms, profiles</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-pink-200">
+                                <h4 class="font-semibold text-pink-700"><i class="fas fa-puzzle-piece mr-2"></i>Componentes</h4>
+                                <p class="text-sm text-gray-600">sidebar, navbar, modals, cards</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-pink-200">
+                                <h4 class="font-semibold text-pink-700"><i class="fas fa-code mr-2"></i>Servicios Cliente</h4>
+                                <p class="text-sm text-gray-600">API Calls, Charts, PDF View</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Módulo Backend -->
+                    <div class="node bg-gradient-to-br from-indigo-50 to-blue-50 p-6 rounded-lg border-2 border-indigo-200">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-cogs text-3xl text-indigo-600 mr-3"></i>
+                            <h3 class="text-xl font-bold text-indigo-800">Módulo Backend</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="bg-white p-3 rounded-lg border border-indigo-200">
+                                <h4 class="font-semibold text-indigo-700"><i class="fas fa-route mr-2"></i>Controlador</h4>
+                                <p class="text-sm text-gray-600">Routing, Logic, Response, API</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-indigo-200">
+                                <h4 class="font-semibold text-indigo-700"><i class="fas fa-table mr-2"></i>Modelo</h4>
+                                <p class="text-sm text-gray-600">Entities, Data, Validation</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-indigo-200">
+                                <h4 class="font-semibold text-indigo-700"><i class="fas fa-shield-alt mr-2"></i>Seguridad</h4>
+                                <p class="text-sm text-gray-600">Auth, Sessions, CSRF, Validation</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Módulo Datos -->
+                    <div class="node bg-gradient-to-br from-amber-50 to-orange-50 p-6 rounded-lg border-2 border-amber-200">
+                        <div class="flex items-center mb-4">
+                            <i class="fas fa-database text-3xl text-amber-600 mr-3"></i>
+                            <h3 class="text-xl font-bold text-amber-800">Módulo Datos</h3>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="bg-white p-3 rounded-lg border border-amber-200">
+                                <h4 class="font-semibold text-amber-700"><i class="fas fa-sitemap mr-2"></i>Schema</h4>
+                                <p class="text-sm text-gray-600">Tables, Relations, Indexes</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-amber-200">
+                                <h4 class="font-semibold text-amber-700"><i class="fas fa-search mr-2"></i>Queries</h4>
+                                <p class="text-sm text-gray-600">SELECT, INSERT, UPDATE, DELETE</p>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-amber-200">
+                                <h4 class="font-semibold text-amber-700"><i class="fas fa-exchange-alt mr-2"></i>Transacciones</h4>
+                                <p class="text-sm text-gray-600">Atomic Operations, Rollback</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Diagrama de Flujo General -->
+        <section id="flujo" class="mb-12">
+            <div class="flow-card text-white p-6 rounded-lg mb-6">
+                <h2 class="text-2xl font-bold mb-2">
+                    <i class="fas fa-project-diagram mr-2"></i>Flujo General del Sistema
+                </h2>
+                <p class="text-cyan-100">Proceso completo desde el inicio hasta las funcionalidades</p>
+            </div>
+
+            <div class="diagram-container p-6">
+                <div class="space-y-8">
+                    <!-- Nivel 1: Inicio -->
+                    <div class="text-center">
+                        <div class="node bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-lg inline-block">
+                            <i class="fas fa-play-circle text-2xl mr-2"></i>
+                            <span class="text-xl font-bold">SISTEMA DE GESTIÓN DE POSTULANTES</span>
+                        </div>
+                    </div>
+
+                    <!-- Nivel 2: Pantalla de Inicio -->
+                    <div class="flex flex-col items-center justify-center">
+                        <div class="mb-4">
+                            <i class="fas fa-arrow-down text-2xl text-gray-400"></i>
+                        </div>
+                        
+                        <div class="node bg-gradient-to-r from-purple-500 to-purple-600 text-white p-4 rounded-lg">
+                            <i class="fas fa-home text-2xl mr-2"></i>
+                            <span class="text-xl font-bold">PANTALLA DE INICIO</span>
+                        </div>
+                    </div>
+
+                    <!-- Nivel 3: Accesos -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <i class="fas fa-arrow-down text-2xl text-gray-400 mb-4"></i>
+                            <div class="node bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-lg">
+                                <i class="fas fa-user mr-2"></i>
+                                <span class="font-bold">ACCESO POSTULANTE</span>
+                            </div>
+                            <div class="mt-4 space-y-2">
+                                <div class="bg-green-100 p-3 rounded-lg">
+                                    <i class="fas fa-file-alt text-green-600 mr-2"></i>
+                                    Formulario Postulación
+                                </div>
+                                <div class="bg-green-100 p-3 rounded-lg">
+                                    <i class="fas fa-upload text-green-600 mr-2"></i>
+                                    Carga de Documentos
+                                </div>
+                                <div class="bg-green-100 p-3 rounded-lg">
+                                    <i class="fas fa-check-circle text-green-600 mr-2"></i>
+                                    Confirmación
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <i class="fas fa-arrow-down text-2xl text-gray-400 mb-4"></i>
+                            <div class="node bg-gradient-to-r from-orange-500 to-orange-600 text-white p-4 rounded-lg">
+                                <i class="fas fa-user-shield mr-2"></i>
+                                <span class="font-bold">ACCESO ADMINISTRADOR</span>
+                            </div>
+                            <div class="mt-4 space-y-2">
+                                <div class="bg-orange-100 p-3 rounded-lg">
+                                    <i class="fas fa-sign-in-alt text-orange-600 mr-2"></i>
+                                    Login Seguro
+                                </div>
+                                <div class="bg-orange-100 p-3 rounded-lg">
+                                    <i class="fas fa-tachometer-alt text-orange-600 mr-2"></i>
+                                    Dashboard Admin
+                                </div>
+                                <div class="bg-orange-100 p-3 rounded-lg">
+                                    <i class="fas fa-chart-bar text-orange-600 mr-2"></i>
+                                    Estadísticas
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nivel 4: Funcionalidades Admin -->
+                    <div class="text-center">
+                        <i class="fas fa-arrow-down text-2xl text-gray-400 mb-4"></i>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="node bg-gradient-to-r from-red-500 to-red-600 text-white p-3 rounded-lg">
+                                <i class="fas fa-users mr-2"></i>Gestión Postulantes
+                            </div>
+                            <div class="node bg-gradient-to-r from-indigo-500 to-indigo-600 text-white p-3 rounded-lg">
+                                <i class="fas fa-file-pdf mr-2"></i>Ver Documentos
+                            </div>
+                            <div class="node bg-gradient-to-r from-teal-500 to-teal-600 text-white p-3 rounded-lg">
+                                <i class="fas fa-chart-pie mr-2"></i>Estadísticas
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Diagrama de Seguridad -->
+        <section id="seguridad" class="mb-12">
+            <div class="security-card text-white p-6 rounded-lg mb-6">
+                <h2 class="text-2xl font-bold mb-2">
+                    <i class="fas fa-shield-alt mr-2"></i>Arquitectura de Seguridad
+                </h2>
+                <p class="text-green-100">Sistema de autenticación y protección de datos</p>
+            </div>
+
+            <div class="diagram-container p-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <!-- Cliente -->
+                    <div class="node bg-gradient-to-br from-green-50 to-emerald-50 p-4 rounded-lg border-2 border-green-200 text-center">
+                        <i class="fas fa-desktop text-3xl text-green-600 mb-3"></i>
+                        <h4 class="font-bold text-green-800 mb-2">Cliente</h4>
+                        <div class="space-y-1 text-sm text-green-700">
+                            <div>Sessions</div>
+                            <div>Cookies</div>
+                            <div>JWT (Futuro)</div>
+                        </div>
+                    </div>
+
+                    <!-- Middleware -->
+                    <div class="node bg-gradient-to-br from-blue-50 to-cyan-50 p-4 rounded-lg border-2 border-blue-200 text-center">
+                        <i class="fas fa-filter text-3xl text-blue-600 mb-3"></i>
+                        <h4 class="font-bold text-blue-800 mb-2">Middleware Auth</h4>
+                        <div class="space-y-1 text-sm text-blue-700">
+                            <div>Check Session</div>
+                            <div>Verify Admin</div>
+                            <div>Redirect if Invalid</div>
+                        </div>
+                    </div>
+
+                    <!-- Validación -->
+                    <div class="node bg-gradient-to-br from-yellow-50 to-amber-50 p-4 rounded-lg border-2 border-yellow-200 text-center">
+                        <i class="fas fa-check-circle text-3xl text-yellow-600 mb-3"></i>
+                        <h4 class="font-bold text-yellow-800 mb-2">Validación</h4>
+                        <div class="space-y-1 text-sm text-yellow-700">
+                            <div>Input Sanitize</div>
+                            <div>XSS Prevention</div>
+                            <div>File Type Check</div>
+                        </div>
+                    </div>
+
+                    <!-- Base de Datos -->
+                    <div class="node bg-gradient-to-br from-red-50 to-pink-50 p-4 rounded-lg border-2 border-red-200 text-center">
+                        <i class="fas fa-database text-3xl text-red-600 mb-3"></i>
+                        <h4 class="font-bold text-red-800 mb-2">Base de Datos</h4>
+                        <div class="space-y-1 text-sm text-red-700">
+                            <div>Prepared Statements</div>
+                            <div>Escaping</div>
+                            <div>SQL Injection Prevention</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Flujo de Seguridad -->
+                <div class="mt-8 p-6 bg-gray-50 rounded-lg">
+                    <h4 class="font-bold text-gray-800 mb-4 text-center">
+                        <i class="fas fa-random mr-2"></i>Flujo de Seguridad
+                    </h4>
+                    <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                        <div class="bg-white p-3 rounded-lg shadow-sm border">
+                            <i class="fas fa-lock text-green-600 mr-2"></i>
+                            Request Seguro
+                        </div>
+                        <i class="fas fa-arrow-right text-gray-400 hidden md:block"></i>
+                        <div class="bg-white p-3 rounded-lg shadow-sm border">
+                            <i class="fas fa-user-check text-blue-600 mr-2"></i>
+                            Verificar Sesión
+                        </div>
+                        <i class="fas fa-arrow-right text-gray-400 hidden md:block"></i>
+                        <div class="bg-white p-3 rounded-lg shadow-sm border">
+                            <i class="fas fa-shield-alt text-yellow-600 mr-2"></i>
+                            Validar Permisos
+                        </div>
+                        <i class="fas fa-arrow-right text-gray-400 hidden md:block"></i>
+                        <div class="bg-white p-3 rounded-lg shadow-sm border">
+                            <i class="fas fa-check text-green-600 mr-2"></i>
+                            Ejecutar Acción
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resumen Tecnológico -->
+        <section class="mb-12">
+            <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-6 rounded-lg mb-6">
+                <h2 class="text-2xl font-bold mb-2">
+                    <i class="fas fa-layer-group mr-2"></i>Resumen Tecnológico por Capa
+                </h2>
+                <p class="text-purple-100">Tecnologías utilizadas en cada nivel del sistema</p>
+            </div>
+
+            <div class="diagram-container p-6">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left text-gray-700">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="px-4 py-3 font-bold">Capa</th>
+                                <th class="px-4 py-3 font-bold">Tecnologías</th>
+                                <th class="px-4 py-3 font-bold">Responsabilidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="px-4 py-3 font-semibold text-blue-700">Presentación</td>
+                                <td class="px-4 py-3">HTML, Tailwind CSS, Alpine.js</td>
+                                <td class="px-4 py-3">UI/UX, Interacción usuario</td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="px-4 py-3 font-semibold text-green-700">Cliente</td>
+                                <td class="px-4 py-3">JavaScript, Chart.js, PDF.js</td>
+                                <td class="px-4 py-3">Lógica frontend, Gráficos</td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="px-4 py-3 font-semibold text-purple-700">Comunicación</td>
+                                <td class="px-4 py-3">Fetch API, FormData</td>
+                                <td class="px-4 py-3">HTTP Requests, File Upload</td>
+                            </tr>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="px-4 py-3 font-semibold text-red-700">Aplicación</td>
+                                <td class="px-4 py-3">PHP 8.0+, Sessions</td>
+                                <td class="px-4 py-3">Lógica negocio, Controladores</td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="px-4 py-3 font-semibold text-orange-700">Datos</td>
+                                <td class="px-4 py-3">MySQL, PDO</td>
+                                <td class="px-4 py-3">Almacenamiento, Consultas</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center space-x-6 mb-4">
+                <div class="bg-blue-600 p-3 rounded-full">
+                    <i class="fab fa-php text-2xl"></i>
+                </div>
+                <div class="bg-green-600 p-3 rounded-full">
+                    <i class="fab fa-js-square text-2xl"></i>
+                </div>
+                <div class="bg-red-600 p-3 rounded-full">
+                    <i class="fas fa-database text-2xl"></i>
+                </div>
+                <div class="bg-purple-600 p-3 rounded-full">
+                    <i class="fab fa-html5 text-2xl"></i>
+                </div>
+            </div>
+            <p class="text-gray-400">
+                Sistema de Gestión de Postulantes - Proyecto Desarrollo de Software XI
+            </p>
+            <p class="text-gray-500 text-sm mt-2">
+                Arquitectura diseñada para escalabilidad y seguridad
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll para navegación
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Efectos hover mejorados
+        document.querySelectorAll('.node').forEach(node => {
+            node.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+            });
+            node.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>
